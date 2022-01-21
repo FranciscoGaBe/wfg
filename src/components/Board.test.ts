@@ -1,9 +1,14 @@
 import { mount } from '@vue/test-utils'
+import BoardComponent from '../types/BoardComponent'
 import Board from './Board.vue'
 
 describe('Board', () => {
 
-  const mountOptions = {
+  interface Options {
+    props: BoardComponent.Props
+  }
+
+  const mountOptions: Options = {
     props: {
       word: ''
     }
@@ -50,7 +55,7 @@ describe('Board', () => {
 
   it('displays rowData prop info in top rows', () => {
 
-    const rowData = [
+    const board: BoardComponent.Board = [
       [
         { letter: 'o', state: 0 },
         { letter: 'b', state: 0 },
@@ -69,7 +74,7 @@ describe('Board', () => {
     const wrapper = mount(Board, {
       props: {
         ...mountOptions.props,
-        rowData
+        board
       }
     })
     const rows = wrapper.findAll('.wordle-check')
@@ -80,7 +85,7 @@ describe('Board', () => {
       const tiles = row.findAll('.wordle-tile')
       tiles.forEach((tile, tileIndex) => {
 
-        const data = rowData[rowIndex][tileIndex]
+        const data = board[rowIndex][tileIndex]
         expect(tile.text()).toBe(data.letter)
         expect(tile.classes()).toContain(`wordle-tile-${data.state}`)
 

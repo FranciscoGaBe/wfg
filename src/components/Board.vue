@@ -1,25 +1,19 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
+import type BoardComponent from '../types/BoardComponent';
 
-type Row = Tile[]
-
-type Tile = {
-  letter: string,
-  state: 0 | 1 | 2
-}
-
-type Props = {
-  rowData?: Row[],
+interface Props {
+  board?: BoardComponent.Board,
   word: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  rowData: () => []
+  board: () => []
 })
 
 const wordInput = computed<string[]>(() => Array(5).fill(0).map((_, index) => props.word[index] || ''))
 
-const tileClasses: string[] = [
+const tileClasses = [
   'bg-gray-500 border-gray-600',
   'bg-orange-300 border-orange-400',
   'bg-green-500 border-green-600'
@@ -31,7 +25,7 @@ const getTileClass = (state: number) => `wordle-tile-${state} ${tileClasses[stat
 
 <template>
   <div class="flex flex-col justify-center w-full">
-    <div v-for="(row, rowIndex) in rowData" :key="rowIndex" class="wordle-row wordle-check">
+    <div v-for="(row, rowIndex) in board" :key="rowIndex" class="wordle-row wordle-check">
       <div
         v-for="(tile, tileIndex) in row"
         :key="tileIndex"
@@ -39,7 +33,7 @@ const getTileClass = (state: number) => `wordle-tile-${state} ${tileClasses[stat
         :class="[getTileClass(tile.state)]"
       >{{ tile.letter }}</div>
     </div>
-    <div v-if="rowData.length < 6" class="wordle-row wordle-input">
+    <div v-if="board.length < 6" class="wordle-row wordle-input">
       <div
         v-for="(tile, tileIndex) in wordInput"
         :key="tileIndex"
@@ -47,7 +41,7 @@ const getTileClass = (state: number) => `wordle-tile-${state} ${tileClasses[stat
         :class="{ 'border-gray-500': tile }"
       >{{ tile }}</div>
     </div>
-    <div v-for="(_, rowIndex) in Array(5 - rowData.length)" :key="rowIndex" class="wordle-row">
+    <div v-for="(_, rowIndex) in Array(5 - board.length)" :key="rowIndex" class="wordle-row">
       <div v-for="(_, tileIndex) in Array(5)" :key="tileIndex" class="wordle-tile"></div>
     </div>
   </div>
