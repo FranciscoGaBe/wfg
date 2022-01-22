@@ -19,39 +19,45 @@ const tileClasses = [
   'bg-green-500 border-green-600'
 ]
 
-const getTileClass = (state: number) => `wordle-tile-${state} ${tileClasses[state]}`
+const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state]}`
 
 </script>
 
 <template>
   <div class="flex flex-col justify-center w-full">
-    <div v-for="(row, rowIndex) in board" :key="rowIndex" class="wordle-row wordle-check">
+    <div v-for="(row, rowIndex) in board" :key="rowIndex" class="board-row board-check">
       <div
         v-for="(tile, tileIndex) in row"
         :key="tileIndex"
-        class="wordle-tile text-white"
+        class="board-tile text-white"
         :class="[getTileClass(tile.state)]"
       >{{ tile.letter }}</div>
     </div>
-    <div v-if="board.length < 6" class="wordle-row wordle-input">
+    <div v-if="board.length < 6" class="board-row board-input">
       <div
         v-for="(tile, tileIndex) in wordInput"
         :key="tileIndex"
-        class="wordle-tile wordle-input-tile"
+        class="board-tile board-input-tile"
         :class="{ 'border-gray-500': tile }"
       >{{ tile }}</div>
     </div>
-    <div v-for="(_, rowIndex) in Array(5 - board.length)" :key="rowIndex" class="wordle-row">
-      <div v-for="(_, tileIndex) in Array(5)" :key="tileIndex" class="wordle-tile"></div>
-    </div>
+    <template v-if="board.length < 6">
+      <div
+        v-for="(_, rowIndex) in Array(5 - board.length)"
+        :key="rowIndex"
+        class="board-row board-empty"
+      >
+        <div v-for="(_, tileIndex) in Array(5)" :key="tileIndex" class="board-tile"></div>
+      </div>
+    </template>
   </div>
 </template>
 
 <style scoped>
-.wordle-row {
+.board-row {
   @apply flex justify-center gap-0.5 my-0.5 h-1/5 max-h-14;
 }
-.wordle-tile {
+.board-tile {
   @apply w-1/5 max-w-14 rounded-md flex items-center justify-center;
   @apply capitalize font-bold text-2xl;
   @apply border-2 shadow;
