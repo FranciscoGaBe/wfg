@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import Game from './components/Game.vue';
 </script>
 
 <template>
-  <div></div>
+  <div class="bg-gray-700 h-full">
+    <Game />
+  </div>
 </template>
