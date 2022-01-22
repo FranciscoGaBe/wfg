@@ -37,8 +37,8 @@ const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state
       <div
         v-for="(tile, tileIndex) in wordInput"
         :key="tileIndex"
-        class="board-tile board-input-tile"
-        :class="{ 'border-gray-500': tile }"
+        class="board-tile board-input-tile bg-gray-100"
+        :class="[tile ? 'border-gray-500' : 'border-gray-300']"
       >{{ tile }}</div>
     </div>
     <template v-if="board.length < 6">
@@ -47,7 +47,11 @@ const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state
         :key="rowIndex"
         class="board-row board-empty"
       >
-        <div v-for="(_, tileIndex) in Array(5)" :key="tileIndex" class="board-tile"></div>
+        <div
+          v-for="(_, tileIndex) in Array(5)"
+          :key="tileIndex"
+          class="board-tile border-gray-300 bg-gray-100"
+        ></div>
       </div>
     </template>
   </div>
