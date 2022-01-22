@@ -10,10 +10,10 @@ interface Emits {
   (e: 'delete'): void
 }
 
-defineEmits<Emits>()
 const props = withDefaults(defineProps<Props>(), {
   keyStates: () => ({})
 })
+const emits = defineEmits<Emits>()
 
 const letters = "qwertyuiop.asdfghjklñ.zxcvbnm";
 
@@ -41,20 +41,20 @@ const getKeyClass = (letter: string) => {
         <div
           v-if="index === 2"
           class="keyboard-key keyboard-delete px-1.5"
-          @click="$emit('delete')"
+          @click="emits('delete')"
         >delete</div>
         <div
           v-for="letter in row.split('')"
           class="keyboard-key w-12"
           :class="[`keyboard-key-${letter}`, getKeyClass(letter)]"
-          @click="$emit('key', letter)"
+          @click="emits('key', letter)"
         >
           <span>{{ letter }}</span>
         </div>
         <div
           v-if="index === 2"
           class="keyboard-key keyboard-enter px-1"
-          @click="$emit('enter')"
+          @click="emits('enter')"
         >enter</div>
       </div>
     </div>
