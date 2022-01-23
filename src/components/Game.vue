@@ -2,11 +2,13 @@
 import { nextTick, reactive, ref } from "vue";
 import Keyboard from "./Keyboard.vue";
 import Board from "./Board.vue";
+import Alert from './Alert.vue'
 import BoardComponent from "../types/BoardComponent";
 import KeyboardComponent from "../types/KeyboardComponent";
 import Wordle, { letterData } from "../wordle/Wordle";
 
 const keyboardRef = ref<InstanceType<typeof Keyboard>>()
+const alertRef = ref<InstanceType<typeof Alert>>()
 
 const wordle = ref(new Wordle(Wordle.getWord()))
 const word = ref('')
@@ -47,17 +49,24 @@ const setKeyStates = (data: BoardComponent.Row) => {
 
 const onEnter = () => {
 
-  if (word.value.length !== 5) return
+  try {
+    if (word.value.length !== 5) return
 
-  const check = wordle.value.check(word.value)
-  board.push(check)
-  word.value = ''
-  setKeyStates(check)
+    const check = wordle.value.check(word.value)
+    board.push(check)
+    word.value = ''
+    setKeyStates(check)
 
-  if (board.length > 5) done.value = true
-  if (check.every((data: letterData) => data.state === 2)) {
-    done.value = true
-    cleared.value = true
+    if (board.length > 5) done.value = true
+    if (check.every((data: letterData) => data.state === 2)) {
+      done.value = true
+      cleared.value = true
+    }
+  }
+  catch (err) {
+
+    alertRef.value?.alert(typeof err === 'string' ? err : (<Error>err).message)
+
   }
 
 }
@@ -94,6 +103,7 @@ const resetGame = () => {
       @delete="onDelete"
       @enter="onEnter"
     />
+    <Alert ref="alertRef" />
   </div>
 </template>
 
