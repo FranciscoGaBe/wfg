@@ -48,9 +48,32 @@ describe('Wordle', () => {
       expect(checkedWord[4]).toEqual({ letter: 'o', state: 2 })
     })
 
-    it('returns empty if word is correct', () => {
+    it('returns all data with state 2 if correct', () => {
+
       const checkedWord = wordle.check('obeso')
-      expect(checkedWord).toEqual([])
+      const data = 'obeso'.split('').map(letter => ({
+        letter,
+        state: 2
+      }))
+
+      expect(checkedWord).toEqual(data)
+
+    })
+
+    it('if a letter is in it\'s correct position, it shouldn\' appear as being in the word again', () => {
+
+      wordle = new Wordle('sueco')
+      const checkedWord = wordle.check('sesos')
+      const data = [
+        { letter: 's', state: 2 },
+        { letter: 'e', state: 1 },
+        { letter: 's', state: 0 },
+        { letter: 'o', state: 1 },
+        { letter: 's', state: 0 },
+      ]
+
+      expect(checkedWord).toEqual(data)
+
     })
   })
 

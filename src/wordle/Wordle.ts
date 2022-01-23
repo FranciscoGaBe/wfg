@@ -40,14 +40,16 @@ export default class Wordle {
   check(word: string): letterData[] {
 
     if (!this.dictionary.includes(word)) throw new Error('No existe la palabra en el diccionario')
-    if (this.word === word) return []
 
     const letters = this.getLetters()
 
     const checkedWord = word.split('').map((c, index) => {
 
       const data: letterData = { letter: c, state: 0 }
-      if (c === this.word[index]) data.state = 2
+      if (c === this.word[index]) {
+        data.state = 2
+        letters[c]--
+      }
       else if (letters[c] > 0) {
         data.state = 1
         letters[c]--
