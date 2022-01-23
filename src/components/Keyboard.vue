@@ -35,17 +35,17 @@ const getKeyClass = (letter: string) => {
 </script>
 
 <template>
-  <div class="flex justify-center">
-    <div class="bg-gray-500 shadow w-full max-w-fit rounded p-1">
+  <div class="select-none bg-red-600">
+    <div class="bg-gray-500 shadow rounded">
       <div v-for="(row, index) in letters.split('.')" class="flex justify-center">
         <div
           v-if="index === 2"
-          class="keyboard-key keyboard-delete px-1.5"
+          class="keyboard-key keyboard-delete flex-grow"
           @click="emits('delete')"
-        >delete</div>
+        >Borrar</div>
         <div
           v-for="letter in row.split('')"
-          class="keyboard-key w-12"
+          class="keyboard-key"
           :class="[`keyboard-key-${letter}`, getKeyClass(letter)]"
           @click="emits('key', letter)"
         >
@@ -53,9 +53,9 @@ const getKeyClass = (letter: string) => {
         </div>
         <div
           v-if="index === 2"
-          class="keyboard-key keyboard-enter px-1"
+          class="keyboard-key keyboard-enter flex-grow"
           @click="emits('enter')"
-        >enter</div>
+        >Enter</div>
       </div>
     </div>
   </div>
@@ -63,9 +63,10 @@ const getKeyClass = (letter: string) => {
 
 <style scoped>
 .keyboard-key {
-  @apply h-12 flex items-center justify-center text-2xl m-1 rounded cursor-pointer capitalize;
+  @apply h-12 flex items-center justify-center text-lg font-black cursor-pointer capitalize;
   @apply bg-gradient-to-b text-white;
-  @apply border-2 shadow-lg;
+  @apply border;
+  width: 10%;
 }
 
 .keyboard-delete,

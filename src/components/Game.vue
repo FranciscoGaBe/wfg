@@ -78,17 +78,17 @@ const resetGame = () => {
 </script>
 
 <template>
-  <div class="h-full flex flex-col max-w-fit mx-auto">
+  <div class="flex flex-col">
     <div class="flex-shrink-0 text-center font-bold text-4xl py-4 text-white">
       <h1>WORDLE</h1>
     </div>
-    <Board class="flex-grow" :word="word" :board="board" />
-    <div class="flex-shrink-0 flex">
+    <div class="flex-shrink-0 flex my-2">
       <button class="wordle-button wordle-reset ml-auto" @click="resetGame">Reiniciar</button>
     </div>
+    <Board class="flex-grow" :word="word" :board="board" />
     <Keyboard
       ref="keyboardRef"
-      class="flex-shrink-0 py-2"
+      class="flex-shrink-0"
       :keyStates="keyStates"
       @key="onKey"
       @delete="onDelete"

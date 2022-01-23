@@ -4,6 +4,6 @@ import Game from './components/Game.vue';
 
 <template>
   <div class="bg-gray-700 h-full">
-    <Game />
+    <Game class="h-full max-w-sm mx-auto" />
   </div>
 </template>
