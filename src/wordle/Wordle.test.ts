@@ -60,7 +60,7 @@ describe('Wordle', () => {
 
     })
 
-    it('if a letter is in it\'s correct position, it shouldn\' appear as being in the word again', () => {
+    it('if a letter is in it\'s correct position, it shouldn\' appear as being in the word again - 1', () => {
 
       wordle = new Wordle('sueco')
       const checkedWord = wordle.check('sesos')
@@ -70,6 +70,22 @@ describe('Wordle', () => {
         { letter: 's', state: 0 },
         { letter: 'o', state: 1 },
         { letter: 's', state: 0 },
+      ]
+
+      expect(checkedWord).toEqual(data)
+
+    })
+
+    it('if a letter is in it\'s correct position, it shouldn\' appear as being in the word again - 2', () => {
+
+      wordle = new Wordle('pepla')
+      const checkedWord = wordle.check('plata')
+      const data = [
+        { letter: 'p', state: 2 },
+        { letter: 'l', state: 1 },
+        { letter: 'a', state: 0 },
+        { letter: 't', state: 0 },
+        { letter: 'a', state: 2 },
       ]
 
       expect(checkedWord).toEqual(data)

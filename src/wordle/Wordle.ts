@@ -58,6 +58,22 @@ export default class Wordle {
 
     })
 
+    Object.entries(letters).filter(([_, value]) => value < 0).forEach(([key, value]) => {
+
+      checkedWord.reverse()
+
+      for (let i = value; i < 0; i++) {
+
+        const data = checkedWord.find(data => data.state === 1)
+        if (!data) continue
+        data.state = 0
+
+      }
+
+      checkedWord.reverse()
+
+    })
+
     return checkedWord
 
   }
