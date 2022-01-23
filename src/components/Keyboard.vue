@@ -18,14 +18,14 @@ const emits = defineEmits<Emits>()
 const letters = "qwertyuiop.asdfghjklñ.zxcvbnm";
 
 const keyClasses = [
-  'from-gray-500 to-gray-600 border-gray-600',
-  'from-orange-300 to-orange-400 border-orange-400',
-  'from-green-500 to-green-600 border-green-600'
+  'from-gray-400 to-gray-600 border-gray-600',
+  'from-orange-200 to-orange-400 border-orange-400',
+  'from-green-400 to-green-600 border-green-600'
 ]
 
 const getKeyClass = (letter: string) => {
 
-  if (!props.keyStates.hasOwnProperty(letter)) return 'from-gray-300 to-gray-400 border-gray-400'
+  if (!props.keyStates.hasOwnProperty(letter)) return 'from-pink-200 to-pink-400 border-pink-400'
 
   const state = props.keyStates[letter]
   return `keyboard-key-state-${state} ${keyClasses[state]}`
@@ -40,9 +40,11 @@ const getKeyClass = (letter: string) => {
       <div v-for="(row, index) in letters.split('.')" class="flex justify-center">
         <div
           v-if="index === 2"
-          class="keyboard-key keyboard-delete flex-grow"
-          @click="emits('delete')"
-        >Borrar</div>
+          class="keyboard-key keyboard-enter flex-grow"
+          @click="emits('enter')"
+        >
+          <span class="material-icons">east</span>
+        </div>
         <div
           v-for="letter in row.split('')"
           class="keyboard-key"
@@ -53,9 +55,11 @@ const getKeyClass = (letter: string) => {
         </div>
         <div
           v-if="index === 2"
-          class="keyboard-key keyboard-enter flex-grow"
-          @click="emits('enter')"
-        >Enter</div>
+          class="keyboard-key keyboard-delete flex-grow"
+          @click="emits('delete')"
+        >
+          <span class="material-icons">backspace</span>
+        </div>
       </div>
     </div>
   </div>
@@ -71,6 +75,6 @@ const getKeyClass = (letter: string) => {
 
 .keyboard-delete,
 .keyboard-enter {
-  @apply from-gray-700 to-gray-800 border-gray-800;
+  @apply from-rose-700 to-rose-900 border-rose-900;
 }
 </style>

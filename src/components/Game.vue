@@ -92,7 +92,12 @@ const resetGame = () => {
       <h1>WORDLE</h1>
     </div>
     <div class="flex-shrink-0 flex my-2">
-      <button class="wordle-button wordle-reset ml-auto" @click="resetGame">Reiniciar</button>
+      <button
+        class="wordle-button wordle-reset ml-auto flex items-center justify-center"
+        @click="resetGame"
+      >
+        <span class="material-icons">refresh</span>
+      </button>
     </div>
     <Board class="flex-grow" :word="word" :board="board" />
     <Keyboard
