@@ -91,6 +91,22 @@ describe('Wordle', () => {
       expect(checkedWord).toEqual(data)
 
     })
+
+    it('if a letter is in it\'s correct position, it shouldn\' appear as being in the word again - 3', () => {
+
+      wordle = new Wordle('luian')
+      const checkedWord = wordle.check('alias')
+      const data = [
+        { letter: 'a', state: 0 },
+        { letter: 'l', state: 1 },
+        { letter: 'i', state: 2 },
+        { letter: 'a', state: 2 },
+        { letter: 's', state: 0 },
+      ]
+
+      expect(checkedWord).toEqual(data)
+
+    })
   })
 
 })

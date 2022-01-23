@@ -64,7 +64,7 @@ export default class Wordle {
 
       for (let i = value; i < 0; i++) {
 
-        const data = checkedWord.find(data => data.state === 1)
+        const data = checkedWord.find(data => data.letter === key && data.state === 1)
         if (!data) continue
         data.state = 0
 
