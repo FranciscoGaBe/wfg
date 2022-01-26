@@ -88,16 +88,19 @@ const resetGame = () => {
 
 <template>
   <div class="flex flex-col">
-    <div class="flex-shrink-0 text-center font-bold text-4xl py-4 text-white">
-      <h1>WORDLE</h1>
-    </div>
-    <div class="flex-shrink-0 flex my-2">
-      <button
-        class="wordle-button wordle-reset ml-auto flex items-center justify-center"
-        @click="resetGame"
-      >
-        <span class="material-icons">refresh</span>
-      </button>
+    <div
+      class="flex-shrink-0 py-2 px-2 text-rose-700 flex items-center justify-between border-b-2 border-rose-800"
+    >
+      <div class="w-1/6"></div>
+      <h1 class="text-center font-bold text-4xl">WORDLE</h1>
+      <div class="w-1/6">
+        <button
+          class="wordle-button wordle-reset flex items-center justify-center py-1 w-full"
+          @click="resetGame"
+        >
+          <i class="material-icons !text-3xl">refresh</i>
+        </button>
+      </div>
     </div>
     <Board class="flex-grow p-1" :word="word" :board="board" />
     <Keyboard
@@ -111,11 +114,3 @@ const resetGame = () => {
     <Alert ref="alertRef" />
   </div>
 </template>
-
-<style scoped>
-.wordle-button {
-  @apply px-2 py-1 rounded;
-  @apply bg-gradient-to-b from-red-600 to-red-700 border-2 border-red-700;
-  @apply text-white font-bold uppercase text-lg;
-}
-</style>
