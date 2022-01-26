@@ -48,7 +48,7 @@ const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state
         :key="rowIndex"
         class="board-row board-empty"
       >
-        <div v-for="(_, tileIndex) in Array(5)" :key="tileIndex" class="board-tile bg-gray-100"></div>
+        <div v-for="(_, tileIndex) in Array(5)" :key="tileIndex" class="board-tile bg-gray-200"></div>
       </div>
     </template>
   </div>
