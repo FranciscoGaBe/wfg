@@ -30,11 +30,8 @@ defineExpose({
 </script>
 
 <template>
-  <div class="fixed top-0 left-0 right-0 flex justify-center pt-4">
-    <div
-      class="alert-message"
-      :class="[show ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2']"
-    >{{ message }}</div>
+  <div v-show="show" class="fixed top-0 left-0 right-0 flex justify-center pt-4 animate-show">
+    <div class="alert-message">{{ message }}</div>
   </div>
 </template>
 
@@ -44,5 +41,28 @@ defineExpose({
   @apply text-white font-semibold text-center;
   @apply bg-black bg-opacity-90;
   @apply transition-all duration-300 ease-in-out;
+}
+
+.animate-show {
+  @apply will-change-transform;
+  animation: show 3s ease-in-out 0s 1 both;
+}
+@keyframes show {
+  0% {
+    transform: translateY(-0.5rem);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-0.5rem);
+    opacity: 0;
+  }
 }
 </style>
