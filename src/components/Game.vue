@@ -102,7 +102,7 @@ const resetGame = () => {
     <Board class="flex-grow" :word="word" :board="board" />
     <Keyboard
       ref="keyboardRef"
-      class="flex-shrink-0"
+      class="flex-shrink-0 p-1"
       :keyStates="keyStates"
       @key="onKey"
       @delete="onDelete"

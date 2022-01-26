@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@fontsource/material-icons": "^4.5.1",
-    "@fontsource/roboto": "^4.5.1",
     "vue": "^3.2.25"
   },
   "devDependencies": {
