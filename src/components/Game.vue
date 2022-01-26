@@ -99,7 +99,7 @@ const resetGame = () => {
         <span class="material-icons">refresh</span>
       </button>
     </div>
-    <Board class="flex-grow" :word="word" :board="board" />
+    <Board class="flex-grow p-1" :word="word" :board="board" />
     <Keyboard
       ref="keyboardRef"
       class="flex-shrink-0 p-1"
