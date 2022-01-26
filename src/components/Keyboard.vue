@@ -45,7 +45,7 @@ const getClasses = (letter: string, keyStates: Record<string, number>) => {
           class="keyboard-key keyboard-enter flex-grow"
           @click="emits('enter')"
         >
-          <span class="material-icons">east</span>
+          <span class="material-icons">check</span>
         </button>
         <button
           v-for="letter in row.split('')"
