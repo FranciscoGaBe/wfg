@@ -212,4 +212,14 @@ describe('Game', () => {
 
   })
 
+  it('Displays word when "done" is true and "cleared" is false', async () => {
+
+    expect(wrapper.find('.wordle-solution').exists()).toBeFalsy()
+    wrapper.vm.done = true
+    wrapper.vm.cleared = false
+    await nextTick()
+    expect(wrapper.find('.wordle-solution').text()).toBe(wrapper.vm.wordle.word)
+
+  })
+
 })
