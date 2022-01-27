@@ -6,6 +6,7 @@ import Alert from './Alert.vue'
 import BoardComponent from "../types/BoardComponent";
 import KeyboardComponent from "../types/KeyboardComponent";
 import Wordle, { letterData } from "../wordle/Wordle";
+import Help from "./Help.vue";
 
 const keyboardRef = ref<InstanceType<typeof Keyboard>>()
 const alertRef = ref<InstanceType<typeof Alert>>()
@@ -91,7 +92,9 @@ const resetGame = () => {
     <div
       class="flex-shrink-0 py-2 px-2 text-rose-700 flex items-center justify-between border-b-2 border-rose-800"
     >
-      <div class="w-1/6"></div>
+      <div class="w-1/6">
+        <Help />
+      </div>
       <h1 class="text-center font-bold text-4xl">WORDLE</h1>
       <div class="w-1/6">
         <button
