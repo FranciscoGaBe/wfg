@@ -9,7 +9,7 @@ defineProps<Props>()
 
 const tileClasses = [
   'bg-gray-900 !shadow-none',
-  'bg-orange-400 shadow-orange-400/50',
+  'bg-blue-400 shadow-blue-400/50',
   'bg-green-500 shadow-green-500/50'
 ]
 

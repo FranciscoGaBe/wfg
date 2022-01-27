@@ -22,7 +22,7 @@ const getClasses = (letter: string, keyStates: Record<string, number>) => {
   const classes = [
     'border-gray-200 shadow-gray-200/50',
     'border-gray-900 shadow-gray-900/50',
-    'border-orange-400 shadow-orange-400/50',
+    'border-blue-400 shadow-blue-400/50',
     'border-green-500 shadow-green-500/50'
   ]
 
