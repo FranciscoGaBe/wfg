@@ -30,18 +30,34 @@ const getClasses = (letter: string, keyStates: Record<string, number>) => {
 
 }
 
-const onKeyboardInput = (event: KeyboardEvent) => {
+const keyboardInput = (event: KeyboardEvent): boolean => {
 
   const key = event.key.toLowerCase()
   const keys = letters.replaceAll('.', '')
-  if (key === 'enter') return emits('enter')
-  if (key === 'backspace') return emits('delete')
-  if (!keys.includes(key)) return
+  if (key === 'enter') {
+
+    emits('enter')
+    return true
+
+  }
+  if (key === 'backspace') {
+
+    emits('delete')
+    return true
+
+  }
+  if (!keys.includes(key) || ['Control', 'Alt', 'Meta', 'Shift'].some(modifier => event.getModifierState(modifier))) return false
+
   emits('key', key)
+  return true
 
 }
 
-document.body.addEventListener('keydown', onKeyboardInput)
+document.body.addEventListener('keydown', (event: KeyboardEvent) => {
+
+  keyboardInput(event) && event.preventDefault()
+
+}, true)
 
 </script>
 
