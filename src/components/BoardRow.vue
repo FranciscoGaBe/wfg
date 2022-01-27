@@ -44,7 +44,7 @@ const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state
           :style="`animation-delay: ${tileIndex * 0.25}s;`"
         >{{ tile.letter }}</div>
         <div
-          class="bg-rose-700 text-white flex items-center justify-center absolute inset-0 animate-flip-reverse"
+          class="bg-rose-700 rounded text-white flex items-center justify-center absolute inset-0 animate-flip-reverse"
           :style="`animation-delay: ${tileIndex * 0.25}s;`"
         >{{ tile.letter }}</div>
       </div>
