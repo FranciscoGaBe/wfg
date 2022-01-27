@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+import { computed } from 'vue';
 import type BoardComponent from '../types/BoardComponent';
 
 interface Props {
   row: BoardComponent.Row | string[] | null
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const tileClasses = [
   'bg-gray-900 !shadow-none',
@@ -14,6 +15,8 @@ const tileClasses = [
 ]
 
 const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state]}`
+
+const typedRow = computed<BoardComponent.Row>(() => <BoardComponent.Row>props.row)
 
 </script>
 
@@ -37,7 +40,7 @@ const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state
 
   <template v-else>
     <div class="board-row board-check">
-      <div v-for="(tile, tileIndex) in row" :key="tileIndex" class="board-tile relative">
+      <div v-for="(tile, tileIndex) in typedRow" :key="tileIndex" class="board-tile relative">
         <div
           class="w-full h-full rounded text-white shadow-lg animate-flip flex items-center justify-center"
           :class="[getTileClass(tile.state)]"

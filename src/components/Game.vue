@@ -9,8 +9,12 @@ import Wordle, { letterData } from "../wordle/Wordle";
 import Help from "./Help.vue";
 import Result from "./Result.vue";
 
+interface AlertInstance extends InstanceType<typeof Alert> {
+  alert: (msg: string) => void
+}
+
 const keyboardRef = ref<InstanceType<typeof Keyboard>>()
-const alertRef = ref<InstanceType<typeof Alert>>()
+const alertRef = ref<AlertInstance>()
 
 const wordle = ref(new Wordle(Wordle.getWord()))
 const word = ref('')
