@@ -111,10 +111,6 @@ const resetGame = () => {
       </div>
     </div>
     <Board class="flex-grow p-1" :word="word" :board="board" />
-    <div
-      v-if="done && !cleared"
-      class="wordle-solution text-center font-bold uppercase text-4xl text-rose-200"
-    >{{ wordle.word }}</div>
     <Keyboard
       ref="keyboardRef"
       class="flex-shrink-0 p-1"
