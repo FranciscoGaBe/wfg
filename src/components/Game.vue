@@ -7,6 +7,7 @@ import BoardComponent from "../types/BoardComponent";
 import KeyboardComponent from "../types/KeyboardComponent";
 import Wordle, { letterData } from "../wordle/Wordle";
 import Help from "./Help.vue";
+import Result from "./Result.vue";
 
 const keyboardRef = ref<InstanceType<typeof Keyboard>>()
 const alertRef = ref<InstanceType<typeof Alert>>()
@@ -119,5 +120,6 @@ const resetGame = () => {
       @enter="onEnter"
     />
     <Alert ref="alertRef" />
+    <Result v-if="done" :word="wordle.word" :board="board" :cleared="cleared" />
   </div>
 </template>
