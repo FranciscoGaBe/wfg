@@ -100,7 +100,7 @@ const resetGame = () => {
       <div class="w-1/6">
         <Help />
       </div>
-      <h1 class="text-center font-bold text-4xl">WORDLE</h1>
+      <h1 class="text-center font-bold text-4xl">WFG (ES)</h1>
       <div class="w-1/6">
         <button
           class="wordle-button wordle-reset flex items-center justify-center py-1 w-full"
