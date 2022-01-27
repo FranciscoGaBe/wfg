@@ -11,28 +11,50 @@ const emits = defineEmits<{
   (e: 'update:show', show: boolean): void
 }>()
 
-const close = () => {
-
-  emits('update:show', false)
-
-}
+const close = () => { emits('update:show', false) }
 
 </script>
 
 <template>
-  <div v-show="show" class="fixed inset-0 flex items-center justify-center" @click.self="close">
+  <transition name="fade">
     <div
-      class="bg-gray-100 max-w-full w-96 max-h-full h-96 rounded shadow animate-[bounce_0.5s_linear_0s_0.5]"
+      v-show="show"
+      ref="modalRef"
+      class="modal fixed -inset-8 flex items-center justify-center z-50 bg-black bg-opacity-70 p-1"
+      @click.self="close"
     >
-      <div
-        class="flex items-center justify-between pl-4 py-2 pr-2 border-b-2 border-rose-300 shadow"
-      >
-        <div class="modal-title font-semibold text-xl">{{ title }}</div>
-        <button class="modal-close material-icons" @click="close">close</button>
-      </div>
-      <div class="modal-content p-4">
-        <slot></slot>
+      <div ref="bodyRef" class="bg-gray-800 max-w-full min-w-96 max-h-full rounded shadow">
+        <div
+          class="flex items-center justify-between pl-4 py-2 pr-2 border-b-2 border-rose-600 shadow shadow-rose-600/50"
+        >
+          <div class="modal-title font-bold text-3xl text-rose-700">{{ title }}</div>
+          <button class="modal-close flex items-center justify-center" @click="close">
+            <i class="material-icons !text-3xl text-rose-600 !font-bold">close</i>
+          </button>
+        </div>
+        <div class="modal-content p-4 text-rose-500 font-medium">
+          <slot></slot>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-2rem);
+}
+</style>

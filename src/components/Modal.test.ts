@@ -18,7 +18,7 @@ describe('Modal', () => {
   it('has display none when "show" is set false', async () => {
 
     expect.assertions(2)
-    expect((<HTMLElement>wrapper.element).style.display).toBe('none')
+    expect((<HTMLElement>wrapper.find('.modal').element).style.display).toBe('none')
     await wrapper.setProps({
       show: true
     })
@@ -71,7 +71,7 @@ describe('Modal', () => {
     expect.assertions(2)
     await wrapper.find('.modal-content').trigger('click')
     expect(wrapper.emitted('update:show')).toBeFalsy()
-    await wrapper.trigger('click')
+    await wrapper.find('.modal').trigger('click')
     expect(wrapper.emitted('update:show')).toBeTruthy()
 
   })
