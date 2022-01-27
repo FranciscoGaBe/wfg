@@ -8,7 +8,7 @@ interface Props {
 defineProps<Props>()
 
 const tileClasses = [
-  'bg-gray-700 shadow-gray-800',
+  'bg-gray-900 !shadow-none',
   'bg-orange-400 shadow-orange-400/50',
   'bg-green-500 shadow-green-500/50'
 ]
@@ -20,7 +20,7 @@ const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state
 <template>
   <template v-if="!row">
     <div class="board-row board-empty">
-      <div v-for="(_, tileIndex) in Array(5)" :key="tileIndex" class="board-tile bg-gray-200"></div>
+      <div v-for="(_, tileIndex) in Array(5)" :key="tileIndex" class="board-tile bg-gray-600/40"></div>
     </div>
   </template>
 
@@ -29,21 +29,25 @@ const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state
       <div
         v-for="(tile, tileIndex) in row"
         :key="tileIndex"
-        class="board-tile board-input-tile bg-gray-200 border-4"
-        :class="[tile ? 'animate-grow border-black' : 'animate-none border-gray-400']"
+        class="board-tile board-input-tile text-white animate-fade"
+        :class="[tile ? 'animate-grow bg-rose-700' : 'animate-none bg-gray-600']"
       >{{ tile }}</div>
     </div>
   </template>
 
   <template v-else>
     <div class="board-row board-check">
-      <div
-        v-for="(tile, tileIndex) in row"
-        :key="tileIndex"
-        class="board-tile text-white shadow-lg animate-flip"
-        :class="[getTileClass(tile.state)]"
-        :style="`animation-delay: ${tileIndex * 0.25}s;`"
-      >{{ tile.letter }}</div>
+      <div v-for="(tile, tileIndex) in row" :key="tileIndex" class="board-tile relative">
+        <div
+          class="w-full h-full rounded text-white shadow-lg animate-flip flex items-center justify-center"
+          :class="[getTileClass(tile.state)]"
+          :style="`animation-delay: ${tileIndex * 0.25}s;`"
+        >{{ tile.letter }}</div>
+        <div
+          class="bg-rose-700 text-white flex items-center justify-center absolute inset-0 animate-flip-reverse"
+          :style="`animation-delay: ${tileIndex * 0.25}s;`"
+        >{{ tile.letter }}</div>
+      </div>
     </div>
   </template>
 </template>
@@ -66,7 +70,26 @@ const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state
 .animate-flip {
   @apply will-change-transform;
   backface-visibility: hidden;
-  animation: flip 0.6s ease-out 0s 1 normal both;
+  animation: flip 0.6s linear 0s 1 normal both;
+}
+
+.animate-flip-reverse {
+  @apply will-change-transform;
+  backface-visibility: hidden;
+  animation: flip-reverse 0.6s linear 0s 1 normal both;
+}
+
+.animate-fade {
+  animation: fade 0.6s ease 0s 1 normal both;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes flip {
@@ -75,6 +98,15 @@ const getTileClass = (state: number) => `board-tile-${state} ${tileClasses[state
   }
   100% {
     transform: rotateY(0deg);
+  }
+}
+
+@keyframes flip-reverse {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
   }
 }
 

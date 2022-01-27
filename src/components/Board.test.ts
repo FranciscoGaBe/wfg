@@ -105,7 +105,7 @@ describe('Board', () => {
     rows.forEach((row, rowIndex) => {
 
       expect(row).toBeTruthy()
-      const tiles = row.findAll('.board-tile')
+      const tiles = row.findAll('.board-tile>div:first-child')
       tiles.forEach((tile, tileIndex) => {
 
         const data = board[rowIndex][tileIndex]
