@@ -75,7 +75,7 @@ const getClasses = (letter: string, keyStates: Record<string, number>) => {
 <style scoped>
 .keyboard-key {
   @apply w-[10%] rounded pt-2 will-change-transform hover:-translate-y-0.5 active:translate-y-0.5;
-  @apply bg-black hover:bg-black/80 shadow-sm hover:shadow-md shadow-rose-700 hover:shadow-rose-400/50 active:shadow-none;
+  @apply bg-black/80 hover:bg-black/70 shadow-sm hover:shadow-md shadow-rose-700 hover:shadow-rose-400/50 active:shadow-none;
   @apply uppercase font-bold text-rose-700 hover:text-rose-400;
   @apply transition-all duration-300;
 }
