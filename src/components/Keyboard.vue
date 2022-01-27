@@ -21,7 +21,7 @@ const getClasses = (letter: string, keyStates: Record<string, number>) => {
 
   const classes = [
     'border-gray-200 shadow-gray-200/50',
-    'border-gray-700 shadow-gray-700/50',
+    'border-gray-900 shadow-gray-900/50',
     'border-orange-400 shadow-orange-400/50',
     'border-green-500 shadow-green-500/50'
   ]
@@ -75,13 +75,8 @@ const getClasses = (letter: string, keyStates: Record<string, number>) => {
 <style scoped>
 .keyboard-key {
   @apply w-[10%] rounded pt-2 will-change-transform hover:-translate-y-0.5 active:translate-y-0.5;
-  @apply bg-gray-900 shadow-sm hover:shadow-md shadow-rose-100 hover:shadow-rose-700 active:shadow-none;
-  @apply uppercase font-semibold text-rose-100 hover:text-rose-700;
+  @apply bg-black hover:bg-black/80 shadow-sm hover:shadow-md shadow-rose-700 hover:shadow-rose-400/50 active:shadow-none;
+  @apply uppercase font-bold text-rose-700 hover:text-rose-400;
   @apply transition-all duration-300;
-}
-
-.keyboard-delete,
-.keyboard-enter {
-  @apply from-rose-700 to-rose-900 border-rose-900;
 }
 </style>
