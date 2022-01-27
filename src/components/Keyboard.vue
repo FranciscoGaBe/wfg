@@ -30,6 +30,19 @@ const getClasses = (letter: string, keyStates: Record<string, number>) => {
 
 }
 
+const onKeyboardInput = (event: KeyboardEvent) => {
+
+  const key = event.key.toLowerCase()
+  const keys = letters.replaceAll('.', '')
+  if (key === 'enter') return emits('enter')
+  if (key === 'backspace') return emits('delete')
+  if (!keys.includes(key)) return
+  emits('key', key)
+
+}
+
+document.body.addEventListener('keydown', onKeyboardInput)
+
 </script>
 
 <template>

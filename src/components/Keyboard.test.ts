@@ -1,4 +1,5 @@
-import { mount } from '@vue/test-utils'
+import { DOMWrapper, mount } from '@vue/test-utils'
+import { nextTick } from 'vue'
 import KeyboardComponent from '../types/KeyboardComponent'
 import Keyboard from './Keyboard.vue'
 
@@ -70,6 +71,30 @@ describe('Keyboard', () => {
     expect(aKey.classes()).toContain('keyboard-key-state-0')
     expect(tKey.classes()).toContain('keyboard-key-state-1')
     expect(oKey.classes()).toContain('keyboard-key-state-2')
+
+  })
+
+  it('accepts keyboard input', async () => {
+
+    expect.assertions(3)
+
+    const body = new DOMWrapper(document.body)
+    letters.split('').forEach(letter => {
+
+      body.trigger('keydown', {
+        key: letter
+      })
+
+    })
+
+    await nextTick()
+    expect(wrapper.emitted().key.flatMap(data => data).join('')).toBe(letters)
+
+    body.trigger('keydown.enter')
+    body.trigger('keydown.backspace')
+    await nextTick()
+    expect(wrapper.emitted().enter).toBeTruthy()
+    expect(wrapper.emitted().delete).toBeTruthy()
 
   })
 
