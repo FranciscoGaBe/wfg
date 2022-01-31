@@ -57,10 +57,10 @@ const typedRow = computed<BoardComponent.Row>(() => <BoardComponent.Row>props.ro
 
 <style scoped>
 .board-row {
-  @apply flex justify-center gap-2 my-1 h-1/6 max-h-16;
+  @apply flex justify-center gap-2 my-1 min-h-10 h-1/6 max-h-16;
 }
 .board-tile {
-  @apply w-1/5 max-w-16 rounded flex items-center justify-center;
+  @apply min-w-10 w-1/5 max-w-16 rounded flex items-center justify-center;
   @apply uppercase font-bold text-2xl;
   @apply transition-colors duration-300 ease-in-out;
 }

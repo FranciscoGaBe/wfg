@@ -36,7 +36,7 @@ const rows = computed<(BoardComponent.Row | string[] | null)[]>(() => {
 </script>
 
 <template>
-  <div class="flex flex-col justify-center">
+  <div class="overflow-auto">
     <BoardRow v-for="(row, index) in rows" :key="index" :row="row" />
   </div>
 </template>

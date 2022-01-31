@@ -110,10 +110,10 @@ const resetGame = () => {
         </button>
       </div>
     </div>
-    <Board class="flex-grow p-1" :word="word" :board="board" />
+    <Board class="flex-grow px-2 py-4" :word="word" :board="board" />
     <Keyboard
       ref="keyboardRef"
-      class="flex-shrink-0 p-1"
+      class="flex-shrink-0 px-4 p-1"
       :keyStates="keyStates"
       @key="onKey"
       @delete="onDelete"
