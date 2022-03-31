@@ -63,10 +63,14 @@ const onEnter = () => {
     word.value = ''
     setKeyStates(check)
 
-    if (board.length > 5) done.value = true
     if (check.every((data: letterData) => data.state === 2)) {
-      done.value = true
-      cleared.value = true
+      setTimeout(() => {
+        done.value = true
+        cleared.value = true
+      }, 2000)
+    }
+    else if (board.length > 5) {
+      setTimeout(() => { done.value = true }, 2000)
     }
   }
   catch (err) {
