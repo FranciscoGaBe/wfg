@@ -37,7 +37,7 @@ const share = [
   <Modal v-model:show="show" title="Resultado">
     <div class="w-80">
       <div class="flex items-center justify-between">
-        <h4 class="font-bold text-xl text-rose-600">Palabr:</h4>
+        <h4 class="font-bold text-xl text-rose-600">Palabra:</h4>
         <div class="text-center text-lg uppercase border-b-2 border-current">
           <a
             class="px-1 inline-flex items-center justify-center"
